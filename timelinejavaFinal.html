@@ -1,0 +1,108 @@
+<html>
+  <head>
+
+    <title> Patient timeline from VARERS data</title>
+<!--    <script src="http://api.simile-widgets.org/exhibit/HEAD/exhibit-api.js"></script>
+    <link rel="exhibit-extension" href="http://api.simile-widgets.org/exhibit/HEAD/extensions/map/map-extension.js"/>
+    <link rel="exhibit-extension" href="http://api.simile-widgets.org/exhibit/HEAD/extensions/time/time-extension.js"/>-->
+
+    <script src="http://people.csail.mit.edu/karger/ExhibitK/api/exhibit-api.js"></script>
+    <link rel="exhibit-extension" href="http://people.csail.mit.edu/karger/ExhibitK/api/extensions/map/map-extension.js"/>
+    <link rel="exhibit-extension" href="http://people.csail.mit.edu/karger/ExhibitK/api/extensions/time/time-extension.js"/>
+
+    <!--link href="egypt.txt" data-ex-value-separator=";" rel="exhibit/data" type="text/tsv"/-->
+
+       <link rel="exhibit/data" href="timelinejavaFinal.js"/>
+
+
+    <!--link href="https://spreadsheets.google.com/feeds/list/0AhAtARHyRN5adGZKTWstczJvNjEyU1JEUGdsd1UwZ0E/od6/public/basic?alt=json-in-script" rel="exhibit/data" data-ex-converter="googleSpreadsheets" type="application/jsonp"/-->
+
+
+    <link href="egypt-styles.css" type="text/css" rel="stylesheet" />
+
+  </head>
+  <body>
+
+
+    <h1>Patient timeline from VARERS data</h1>
+    <!-- <h2></h2> -->
+
+    <div data-ex-role="collection" data-ex-item-types="Item"></div>
+
+    <div data-ex-role="lens">
+      <div data-ex-content=".name"></div>
+    </div>
+    
+    <!--div id="options-wrapper"-->
+    
+      <div id="options">
+ <div id="cloud">
+	 <p class="topics">Text:</p>
+	<div data-ex-role="facet" data-ex-facet-class="TextSearch"></div>
+	 <p class="topics">Topics:</p>
+	<div data-ex-role="facet" data-ex-expression=".keywords" data-ex-facet-class="Cloud" data-ex-show-missing="false"></div>
+      </div>
+
+  	<div class="mode" data-ex-role="facet" data-ex-expression=".label" data-ex-show-missing="false" data-ex-height="150px"></div>
+	<div class="mode" data-ex-role="facet" data-ex-expression=".medicalevent" data-ex-show-missing="false" data-ex-height="150px"></div>
+	<div class="mode" data-ex-role="facet" data-ex-expression=".temporaltype" data-ex-show-missing="false" data-ex-height="150px"></div>
+    <div class="mode" data-ex-role="facet" data-ex-expression=".raison1" data-ex-show-missing="false" data-ex-height="150px"></div>
+	
+      </div>
+    <!--/div-->
+
+    <div id="secondRow">
+     
+
+
+      <div id="maps">
+	<div data-ex-role="viewPanel">
+  <!-- this is the timeline -->
+
+
+
+    <div data-ex-role="view" 
+          data-ex-view-class="Timeline" 
+		
+
+
+        
+   
+		
+    	 data-ex-start=".time" 
+          data-ex-end=".time2" 
+		
+
+          
+          data-ex-color-key=".cluster" 
+          data-ex-top-band-unit="month" 
+          data-ex-bottom-band-unit="year" 
+          data-ex-top-band-pixels-per-unit="90" 
+          data-ex-bottom-band-pixels-per-unit="400"
+
+
+
+                <div data-ex-role="lens">
+                    <span data-ex-content=".hour"></span>: <span data-ex-content=".label"></span>
+                </div>
+             </div>
+            
+
+
+
+	    <div data-ex-role="lens">
+	      <a class="hoverOver" data-ex-href-content=".label"><div data-ex-content=".time "></div></a>
+	      
+	    </div>
+	  
+	  <div data-ex-role="view" data-ex-label="List" data-ex-orders=".time" data-ex-possible-orders=".label,.time,.time2,.medicalevent,.temporaltype,.raison1"></div>
+	  <div data-ex-role="view" data-ex-label="Table" data-ex-view-class="Tabular" data-ex-columns=".label,.time,.time2,.medicalevent,.temporaltype,.raison1"></div>
+	</div>
+      </div>
+
+
+    </div>
+   
+
+  </body>
+</html>
